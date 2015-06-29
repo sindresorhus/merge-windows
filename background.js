@@ -2,7 +2,10 @@
 
 chrome.browserAction.onClicked.addListener(function () {
 	chrome.windows.getCurrent(function (win) {
-		chrome.tabs.query({currentWindow: false}, function (tabs) {
+		chrome.tabs.query({
+			currentWindow: false,
+			windowType: 'normal'
+		}, function (tabs) {
 			var tabIds = tabs.map(function (el) {
 				return el.id;
 			});
