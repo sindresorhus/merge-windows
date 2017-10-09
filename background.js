@@ -1,37 +1,26 @@
 'use strict';
 
-function getTabIds(cb) {
-	chrome.tabs.query({
-		currentWindow: false,
-		windowType: 'normal'
-	}, function (tabs) {
-		chrome.tabs.query({
-			currentWindow: false,
-			windowType: 'popup'
-		}, function (tabs2) {
-			var tabIds = tabs.concat(tabs2).map(function (x) {
-				return x.id;
-			});
+const windowTypes = ['normal', 'popup'];
 
-			cb(tabIds);
-		});
-	});
+function p(fn, ...args) {
+	return new Promise(resolve => fn(...args, resolve));
 }
 
-chrome.browserAction.onClicked.addListener(function () {
-	getTabIds(function (tabIds) {
-		chrome.windows.getCurrent(function (win) {
-			chrome.tabs.move(tabIds, {
-				windowId: win.id,
-				index: -1
-			}, function () {
-				// preserve pinned tabs
-				tabs.forEach(function (x) {
-					if (x.pinned) {
-						chrome.tabs.update(x.id, {pinned: true});
-					}
-				});
-			});
-		});
+chrome.browserAction.onClicked.addListener(async () => {
+	const [allTabs, currentWindow] = await Promise.all([
+		p(chrome.tabs.query, {currentWindow: false}),
+		p(chrome.windows.getCurrent)
+	]);
+	
+	const tabs = allTabs.filter(tab => tab.windowType in windowTypes);
+	const pinnedTabs = allTabs.filter(tab => tab.pinned);
+	
+	await p(chrome.tabs.move, tabs.map(tab => tab.id), {
+		windowId: currentWindow.id,
+		index: -1
 	});
+	
+	for (const pinned of pinnedTabs) {
+		chrome.tabs.update(pinned.id, {pinned: true});
+	}
 });
