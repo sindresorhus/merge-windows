@@ -2,9 +2,7 @@
 
 const windowTypes = ['normal', 'popup'];
 
-function p(fn, ...args) {
-	return new Promise(resolve => fn(...args, resolve));
-}
+const p = (fn, ...args) => new Promise(resolve => fn(...args, resolve));
 
 chrome.browserAction.onClicked.addListener(async () => {
 	const currentWindow = await p(chrome.windows.getCurrent);
