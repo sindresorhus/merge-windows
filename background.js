@@ -7,19 +7,17 @@ function p(fn, ...args) {
 }
 
 chrome.browserAction.onClicked.addListener(async () => {
-	const [allTabs, currentWindow] = await Promise.all([
-		p(chrome.tabs.query, {currentWindow: false}),
-		p(chrome.windows.getCurrent)
-	]);
+	const currentWindow = await p(chrome.windows.getCurrent);
+	const allTabs = await p(chrome.tabs.query, {currentWindow: false});
 	
 	const tabs = allTabs.filter(tab => tab.windowType in windowTypes);
-	const pinnedTabs = allTabs.filter(tab => tab.pinned);
 	
 	await p(chrome.tabs.move, tabs.map(tab => tab.id), {
 		windowId: currentWindow.id,
 		index: -1
 	});
 	
+	const pinnedTabs = tabs.filter(tab => tab.pinned);
 	for (const pinned of pinnedTabs) {
 		chrome.tabs.update(pinned.id, {pinned: true});
 	}
