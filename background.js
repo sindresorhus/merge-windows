@@ -17,8 +17,9 @@ chrome.browserAction.onClicked.addListener(async () => {
 		index: -1
 	});
 	
-	const pinnedTabs = tabs.filter(tab => tab.pinned);
-	for (const pinned of pinnedTabs) {
-		chrome.tabs.update(pinned.id, {pinned: true});
+	for (const tab of tabs) {
+		if (tab.pinned) {		
+			chrome.tabs.update(pinned.id, {pinned: true});
+		}
 	}
 });
