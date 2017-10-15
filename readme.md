@@ -10,7 +10,7 @@
 
 ## License
 
-MIT © [Sindre Sorhus](http://sindresorhus.com)
+MIT © [Sindre Sorhus](https://sindresorhus.com)
 
 
 [install]: https://chrome.google.com/webstore/detail/merge-windows/kbpinmnkhfkoidiinmapkhifnfoiklkb

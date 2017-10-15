@@ -4,7 +4,7 @@
 	"description": "Merge windows into the active one",
 	"homepage_url": "https://github.com/sindresorhus/merge-windows",
 	"manifest_version": 2,
-	"minimum_chrome_version": "43",
+	"minimum_chrome_version": "61",
 	"icons": {
 		"128": "icon.png"
 	},
