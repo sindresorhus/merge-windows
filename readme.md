@@ -2,11 +2,9 @@
 
 > Chrome extension - Merge windows into the active one
 
+## [Install (Chrome Store)][install]
+
 [![](screenshot.png)][install]
-
-
-## [Install][install]
-
 
 ## License
 
