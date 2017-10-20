@@ -2,15 +2,12 @@
 
 > Chrome extension - Merge windows into the active one
 
-[![](screenshot.png)][install]
+<img src="screenshot.png" width="400">
 
 
-## [Install][install]
+## [Install](https://chrome.google.com/webstore/detail/merge-windows/kbpinmnkhfkoidiinmapkhifnfoiklkb)
 
 
 ## License
 
 MIT © [Sindre Sorhus](https://sindresorhus.com)
-
-
-[install]: https://chrome.google.com/webstore/detail/merge-windows/kbpinmnkhfkoidiinmapkhifnfoiklkb
