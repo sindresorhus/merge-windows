@@ -1,6 +1,6 @@
 {
 	"name": "Merge Windows",
-	"version": "1.1.0",
+	"version": "1.1.1",
 	"description": "Merge windows into the active one",
 	"homepage_url": "https://github.com/sindresorhus/merge-windows",
 	"manifest_version": 2,
