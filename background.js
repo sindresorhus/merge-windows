@@ -1,15 +1,15 @@
 'use strict';
 
-const p = (fn, ...args) => new Promise(resolve => fn(...args, resolve));
+const promisify = (fn, ...args) => new Promise(resolve => fn(...args, resolve));
 
 chrome.browserAction.onClicked.addListener(async () => {
 	let [currentWindow, ...tabs] = await Promise.all([
-		p(chrome.windows.getCurrent),
-		p(chrome.tabs.query, {
+		promisify(chrome.windows.getCurrent),
+		promisify(chrome.tabs.query, {
 			currentWindow: false,
 			windowType: 'normal'
 		}),
-		p(chrome.tabs.query, {
+		promisify(chrome.tabs.query, {
 			currentWindow: false,
 			windowType: 'popup'
 		})
@@ -17,7 +17,7 @@ chrome.browserAction.onClicked.addListener(async () => {
 
 	tabs = Array.prototype.concat.apply([], tabs);
 
-	await p(chrome.tabs.move, tabs.map(tab => tab.id), {
+	await promisify(chrome.tabs.move, tabs.map(tab => tab.id), {
 		windowId: currentWindow.id,
 		index: -1
 	});

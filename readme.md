@@ -4,10 +4,4 @@
 
 <img src="screenshot.png" width="400">
 
-
 ## [Install](https://chrome.google.com/webstore/detail/merge-windows/kbpinmnkhfkoidiinmapkhifnfoiklkb)
-
-
-## License
-
-MIT © [Sindre Sorhus](https://sindresorhus.com)
