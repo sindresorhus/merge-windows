@@ -2,7 +2,7 @@
 
 const promisify = (fn, ...args) => new Promise(resolve => fn(...args, resolve));
 
-chrome.browserAction.onClicked.addListener(async () => {
+const mergeWindows = async () => {
 	let [currentWindow, ...tabs] = await Promise.all([
 		promisify(chrome.windows.getCurrent),
 		promisify(chrome.tabs.query, {
@@ -27,4 +27,12 @@ chrome.browserAction.onClicked.addListener(async () => {
 			chrome.tabs.update(tab.id, {pinned: true});
 		}
 	}
+};
+
+chrome.commands.onCommand.addListener((command) => {
+	if (command === 'merge-windows') {
+		mergeWindows();
+	}
 });
+
+chrome.browserAction.onClicked.addListener(mergeWindows);

@@ -1,6 +1,6 @@
 {
 	"name": "Merge Windows",
-	"version": "1.1.1",
+	"version": "1.2.1",
 	"description": "Merge windows into the active one",
 	"homepage_url": "https://github.com/sindresorhus/merge-windows",
 	"manifest_version": 2,
@@ -20,5 +20,13 @@
 	"browser_action": {
 		"default_title": "Merge Windows",
 		"default_icon": "icon.png"
+	},
+	"commands": {
+		"merge-windows": {
+			"suggested_key": {
+				"default": "Alt+Shift+M"
+			},
+			"description": "Merge Windows"
+		}
 	}
 }
