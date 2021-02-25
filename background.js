@@ -9,10 +9,6 @@ chrome.browserAction.onClicked.addListener(async () => {
 			currentWindow: false,
 			windowType: 'normal'
 		}),
-		promisify(chrome.tabs.query, {
-			currentWindow: false,
-			windowType: 'popup'
-		})
 	]);
 
 	tabs = Array.prototype.concat.apply([], tabs);
