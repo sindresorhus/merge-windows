@@ -8,9 +8,6 @@
 	"icons": {
 		"128": "icon.png"
 	},
-	"permissions": [
-		"tabs"
-	],
 	"background": {
 		"persistent": false,
 		"scripts": [
