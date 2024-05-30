@@ -1,30 +1,28 @@
-'use strict';
+const browser = globalThis.browser ?? globalThis.chrome;
 
-const promisify = (fn, ...args) => new Promise(resolve => fn(...args, resolve));
-
-chrome.browserAction.onClicked.addListener(async () => {
+browser.action.onClicked.addListener(async () => {
 	let [currentWindow, ...tabs] = await Promise.all([
-		promisify(chrome.windows.getCurrent),
-		promisify(chrome.tabs.query, {
+		browser.windows.getCurrent(),
+		browser.tabs.query({
 			currentWindow: false,
-			windowType: 'normal'
+			windowType: 'normal',
 		}),
-		promisify(chrome.tabs.query, {
+		browser.tabs.query({
 			currentWindow: false,
-			windowType: 'popup'
-		})
+			windowType: 'popup',
+		}),
 	]);
 
-	tabs = Array.prototype.concat.apply([], tabs);
+	tabs = tabs.flat();
 
-	await promisify(chrome.tabs.move, tabs.map(tab => tab.id), {
+	await browser.tabs.move(tabs.map(tab => tab.id), {
 		windowId: currentWindow.id,
-		index: -1
+		index: -1,
 	});
 
 	for (const tab of tabs) {
 		if (tab.pinned) {
-			chrome.tabs.update(tab.id, {pinned: true});
+			browser.tabs.update(tab.id, {pinned: true});
 		}
 	}
 });

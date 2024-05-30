@@ -1,20 +1,18 @@
 {
+	"manifest_version": 3,
 	"name": "Merge Windows",
 	"version": "1.2.0",
 	"description": "Merge windows into the active one",
 	"homepage_url": "https://github.com/sindresorhus/merge-windows",
-	"manifest_version": 2,
-	"minimum_chrome_version": "61",
+	"minimum_chrome_version": "125",
 	"icons": {
 		"128": "icon.png"
 	},
 	"background": {
-		"persistent": false,
-		"scripts": [
-			"background.js"
-		]
+		"service_worker": "background.js",
+		"type": "module"
 	},
-	"browser_action": {
+	"action": {
 		"default_title": "Merge Windows",
 		"default_icon": "icon.png"
 	}
