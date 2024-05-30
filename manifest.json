@@ -1,7 +1,7 @@
 {
 	"manifest_version": 3,
 	"name": "Merge Windows",
-	"version": "1.2.0",
+	"version": "1.3.0",
 	"description": "Merge windows into the active one",
 	"homepage_url": "https://github.com/sindresorhus/merge-windows",
 	"minimum_chrome_version": "125",
